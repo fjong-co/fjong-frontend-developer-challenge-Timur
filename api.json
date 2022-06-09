@@ -1,0 +1,9 @@
+{
+  "brands": ["Mulberry", "REDValentino", "YSL", "Via Miralles"],
+  "outfits": [
+    { "id": 1, "name": "Crossover Bag", "brands": ["Mulberry"], "images": ["/assets/images/picture-1.jpeg"] },
+    { "id": 2, "name": "SAINT LAURENT Wallet On Chain", "brands": ["YSL"], "images": ["/assets/images/picture-2.jpeg", "/assets/images/picture-2-1.jpeg", "/assets/images/picture-2-2.jpeg"], "description": "Saint Laurent’s effortlessly chic Monogram chain wallet embodies the essence of Parisian chic and elegance. Crafted in Italy from dark blue matelassé leather, it is detailed with a magnetic closure, an interior zipped compartment, multiple internal card slots, bill and receipt slots and Saint Laurent’s iconic YSL logo to the front." },
+    { "id": 3, "name": "Satin-Paneled Crepe Mini Dress", "brands": ["REDValentino"], "images": ["/assets/images/picture-3.jpeg", "/assets/images/picture-3-1.jpeg", "/assets/images/picture-3-2.jpeg"], "description": "This antique-rose version is designed just for us. Made from lightweight crepe, it has ladylike neck ties and is paneled with lustrous satin. Temper its mini hemline with flat sandals." },
+    { "id": 4, "name": "PARMA Dress", "brands": ["Via Miralles"], "images": ["/assets/images/picture-4.jpeg", "/assets/images/picture-4-1.jpeg"], "description": "Via Miralles, an emerging designer based in Oslo" }
+  ]
+}
