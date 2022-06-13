@@ -10,8 +10,10 @@
   },
   "scripts": {
     "start": "yarn dev",
+    "start-local": "yarn dev-local",
     "build": "react-scripts build",
-    "dev": "concurrently --kill-others \"json-server --port 3010 --watch api.json\" \"react-scripts start\""
+    "dev": "concurrently --kill-others \"json-server --port 3010 --watch api.json\" \"react-scripts start\"",
+    "dev-local": "concurrently --kill-others \"json-server -H 192.168.1.218 --port 3010 --watch api.json\" \"react-scripts start\""
   },
   "devDependencies": {
     "concurrently": "^3.6.0",
