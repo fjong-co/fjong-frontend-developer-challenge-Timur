@@ -13,12 +13,12 @@ export const styles = StyleSheet.create({
 		flexShrink: 0,
 		margin: Styles.marginNPadding.sm,
 		flexDirection: 'column',
-		backgroundColor: Theme.neutral[100],
+		backgroundColor: Theme.dominant[400],
 		overflow: 'hidden',
 	},
 	img: {
 		height: width * 0.85,
-		width: width - 20,
+		width: width - Styles.marginNPadding.lg,
 	},
 	title: {
 		marginTop: Styles.marginNPadding.sm,
@@ -53,6 +53,17 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'flex-start',
 		alignItems: 'flex-start',
+	},
+	imageDotWrapper: {
+		position: 'absolute',
+		top: 10,
+		left: 0,
+		right: 0,
+		zIndex: 1,
+		height: 10,
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'row',
 	},
 	imageDot: {
 		padding: 3,

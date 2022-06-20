@@ -6,22 +6,21 @@ import { MainNavigatorRoutes } from '../../../navigation/MainNavigation'
 import SearchBar from '../../common/SearchBar'
 import { StackScreenProps } from '@react-navigation/stack'
 import axios from 'axios'
+import { observer } from 'mobx-react-lite'
 import { styles as s } from './index.styles'
 import { useGlobalContext } from '../../../logic/GlobalContext/GlobalContext'
 
-export type FilterScreenProp = StackScreenProps<MainNavigatorRoutes, 'FilterScreen'>
-
-const FilterScreen = <T extends FilterScreenProp>(props: T) => {
+export type FilterScreenNavProp = StackScreenProps<MainNavigatorRoutes, 'FilterScreen'>
+type FilterScreenProp = FilterScreenNavProp
+const FilterScreen: React.FC<FilterScreenProp> = observer((props) => {
   const { store } = useGlobalContext()
   const [currentActive, setcurrentActive] = useState<string[]>(store.filterBrands)
-  const [brands, setBrands] = useState<string[]>([])
   const [search, setSearch] = useState(store.search)
 
   const update = async () => {
     try {
       const result = (await axios('brands')).data
       store.setBrands(result)
-      setBrands(store.brands)
     }
     catch (e) {
       console.log(e)
@@ -73,7 +72,7 @@ const FilterScreen = <T extends FilterScreenProp>(props: T) => {
         style={s.list}
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={brands}
+        data={store.brands}
         renderItem={({ item, index }) =>
           <TouchableOpacity onPress={() => onChipPress(item)}>
             <Chip text={item} getActive={currentActive} style={s.chip} />
@@ -84,6 +83,6 @@ const FilterScreen = <T extends FilterScreenProp>(props: T) => {
 
     </SafeAreaView>
   )
-}
+})
 
 export default FilterScreen

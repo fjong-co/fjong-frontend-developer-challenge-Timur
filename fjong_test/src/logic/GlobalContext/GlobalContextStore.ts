@@ -68,9 +68,9 @@ export class Store {
 		}
 		return result
 	}
-	updateAxiosApiHost = (apiHost: string) => {
-		axios.defaults.baseURL = apiHost
-		this.setApiHost(apiHost)
-		console.log('updateAxiosApiHost', apiHost, 'axios.defaults.baseURL', axios.defaults.baseURL)
+	updateAxiosApiHost = () => {
+		axios.defaults.baseURL = this.apiHost
+		this.setApiHost(this.apiHost)
+		AsyncStorageWrapper.setApiHost(this.apiHost)
 	}
 }

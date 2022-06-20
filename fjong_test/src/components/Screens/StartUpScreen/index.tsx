@@ -5,29 +5,27 @@ import ActionButton from '../../common/ActionButton'
 import { AsyncStorageWrapper } from '../../../logic/AsyncStorage'
 import { MainNavigatorRoutes } from '../../../navigation/MainNavigation'
 import { StackScreenProps } from '@react-navigation/stack'
+import { observer } from 'mobx-react-lite'
 import { styles as s } from './index.styles'
 import { useGlobalContext } from '../../../logic/GlobalContext/GlobalContext'
 
-export type StartUpScreenProp = StackScreenProps<MainNavigatorRoutes, 'StartUpScreen'>
+export type StartUpScreenNavProp = StackScreenProps<MainNavigatorRoutes, 'StartUpScreen'>
+type StartUpScreenProp = StartUpScreenNavProp
 
-const StartUpScreen = <T extends StartUpScreenProp>(props: T) => {
+const StartUpScreen: React.FC<StartUpScreenProp> = observer((props) => {
   const { navigation } = props
   const { store } = useGlobalContext()
 
-
-  const [apiHost, setApiHostState] = React.useState('')
-
   useEffect(() => {
     (async () => {
-      setApiHostState(await AsyncStorageWrapper.getApiHost())
-      console.log('apiHost', apiHost)
+      store.setApiHost(await AsyncStorageWrapper.getApiHost())
+      console.log('apiHost', store.apiHost)
     })()
-    
+
   }, [])
 
   const onPress = () => {
-    AsyncStorageWrapper.setApiHost(apiHost)
-    store.updateAxiosApiHost(apiHost)
+    store.updateAxiosApiHost()
     navigation.navigate('MainTab')
   }
 
@@ -36,8 +34,8 @@ const StartUpScreen = <T extends StartUpScreenProp>(props: T) => {
       <TextInput
         autoFocus
         style={s.input}
-        value={apiHost}
-        onChangeText={(text) => setApiHostState(text)}
+        value={store.apiHost}
+        onChangeText={(text) => store.setApiHost(text)}
       />
       <View style={s.btn}>
         <ActionButton icon='action' onPress={onPress} />
@@ -45,10 +43,6 @@ const StartUpScreen = <T extends StartUpScreenProp>(props: T) => {
 
     </SafeAreaView>
   )
-}
+})
 
 export default StartUpScreen
-
-function AxiosConfigWrapper() {
-  throw new Error('Function not implemented.')
-}

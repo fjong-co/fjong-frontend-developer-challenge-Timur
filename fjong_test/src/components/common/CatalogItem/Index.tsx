@@ -60,17 +60,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ item, index }) => {
     return (
         <Animated.View key={index + item.id} style={[s.element, rstyle]}>
 
-            <View style={{
-                position: 'absolute',
-                top: 10,
-                left: 0,
-                right: 0,
-                zIndex: 1,
-                height: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'row',
-            }}>
+            <View style={s.imageDotWrapper}>
                 {
                     item.images.map((image, index) => {
                         const active = currentActivePicture === index
